@@ -128,16 +128,18 @@ if os.environ.get('VERCEL_BUILD'):
         }
     }
 else:
-    DATABASES = {
-        'default': {
-            'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.mysql'),
-            'NAME': os.environ.get('DB_NAME', 'ecommerce_db'),
-            'USER': os.environ.get('DB_USER', 'root'),
-            'PASSWORD': os.environ.get('DB_PASSWORD', '1110joel'),
-            'HOST': os.environ.get('DB_HOST', 'localhost'),
-            'PORT': os.environ.get('DB_PORT', '3306'),
-        }
+    _db_engine = os.environ.get('DB_ENGINE', 'django.db.backends.mysql')
+    _db_config = {
+        'ENGINE': _db_engine,
+        'NAME': os.environ.get('DB_NAME', 'ecommerce_db'),
+        'USER': os.environ.get('DB_USER', 'root'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', '1110joel'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '3306'),
     }
+    if _db_engine == 'django.db.backends.postgresql':
+        _db_config['OPTIONS'] = {'sslmode': 'require'}
+    DATABASES = {'default': _db_config}
 
 
 # Password validation

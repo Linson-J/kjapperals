@@ -39,10 +39,18 @@ if env_bool('ENABLE_NGROK', DEBUG):
         if origin not in CSRF_TRUSTED_ORIGINS:
             CSRF_TRUSTED_ORIGINS.append(origin)
 
-# Vercel domains
+# Vercel domains — auto-read deployment URL
 if os.environ.get('VERCEL'):
     ALLOWED_HOSTS.append('.vercel.app')
     CSRF_TRUSTED_ORIGINS.append('https://*.vercel.app')
+    for _vkey in ('VERCEL_URL', 'VERCEL_PROJECT_PRODUCTION_URL', 'VERCEL_BRANCH_URL'):
+        _vurl = os.environ.get(_vkey)
+        if _vurl:
+            if _vurl not in ALLOWED_HOSTS:
+                ALLOWED_HOSTS.append(_vurl)
+            _vorigin = f'https://{_vurl}'
+            if _vorigin not in CSRF_TRUSTED_ORIGINS:
+                CSRF_TRUSTED_ORIGINS.append(_vorigin)
 
 
 INSTALLED_APPS = [
@@ -111,16 +119,25 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.mysql'),
-        'NAME': os.environ.get('DB_NAME', 'ecommerce_db'),
-        'USER': os.environ.get('DB_USER', 'root'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', '1110joel'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', '3306'),
+if os.environ.get('VERCEL_BUILD'):
+    # Build phase — no DB server needed, collectstatic only
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.mysql'),
+            'NAME': os.environ.get('DB_NAME', 'ecommerce_db'),
+            'USER': os.environ.get('DB_USER', 'root'),
+            'PASSWORD': os.environ.get('DB_PASSWORD', '1110joel'),
+            'HOST': os.environ.get('DB_HOST', 'localhost'),
+            'PORT': os.environ.get('DB_PORT', '3306'),
+        }
+    }
 
 
 # Password validation

@@ -1,0 +1,8 @@
+.env*
+media/
+staticfiles/
+staticfiles_build/
+*.pyc
+__pycache__/
+.git/
+requirements-dev.txt

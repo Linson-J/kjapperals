@@ -1,6 +1,6 @@
 {% extends 'shop/base.html' %}
 
-{% block title %}About Us - Carmelian{% endblock %}
+{% block title %}About Us - Kjapperals{% endblock %}
 {% block body_class %}about-page{% endblock %}
 
 {% block extra_css %}
@@ -62,23 +62,33 @@
 
 /* --- Story & Heritage Section --- */
 .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
     background: #ffffff;
     border: 1px solid rgba(124, 83, 87, 0.08);
     border-radius: 24px;
-    padding: 45px 50px;
+    padding: 48px 50px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
     margin-bottom: 80px;
-    text-align: center;
+    align-items: center;
 }
 
-.story-content {
-    max-width: 800px;
-    margin: 0 auto;
+.story-img {
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+}
+
+.story-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .story-content h3 {
     font-family: 'Noto Serif', serif;
-    font-size: 2.2rem;
+    font-size: 2rem;
     color: var(--primary, #7c5357);
     margin: 0 0 18px 0;
     line-height: 1.25;
@@ -87,8 +97,44 @@
 .story-content p {
     color: var(--text-dark, #2b2627);
     line-height: 1.75;
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     margin-bottom: 16px;
+}
+
+.story-stat-row {
+    display: flex;
+    gap: 28px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(124, 83, 87, 0.1);
+}
+
+.story-stat {
+    text-align: center;
+}
+
+.story-stat strong {
+    display: block;
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--primary, #7c5357);
+    line-height: 1;
+}
+
+.story-stat span {
+    font-size: 0.8rem;
+    color: var(--muted-text-color, #685b5d);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+}
+
+@media (max-width: 992px) {
+    .story-grid {
+        grid-template-columns: 1fr;
+        padding: 30px 24px;
+    }
+    .story-img { aspect-ratio: 16/7; }
 }
 
 /* --- Trust & Secure Processing --- */
@@ -394,188 +440,206 @@
 
 {% block content %}
 <main class="about-shell">
-    <!-- Hero Banner -->
+
+    <!-- ── Hero ─────────────────────────────────────────────────────── -->
     <section class="about-hero">
-        <span class="about-kicker">OUR STORY & PROMISE</span>
-        <h1>About Carmelian</h1>
-        <p>Crafting timeless, ethically sourced elegance designed for the modern lifestyle with uncompromised quality and trust.</p>
+        <span class="about-kicker">OUR STORY &amp; PROMISE</span>
+        <h1>About Kjapperals</h1>
+        <p>Your trusted garments destination in the heart of Tirunelveli — bringing you the finest ethnic wear, western fashion, and kids' clothing since day one.</p>
     </section>
 
-    <!-- Company Story & Heritage Section -->
+    <!-- ── Story ─────────────────────────────────────────────────────── -->
     <section class="story-grid">
+        <div class="story-img">
+            <img src="/media/carousel/slide_ethnic.jpg" alt="Kjapperals Garments Collection" loading="lazy">
+        </div>
         <div class="story-content">
-            <h3>Crafted with Passion, Rooted in Integrity</h3>
-            <p>Founded with a vision to redefine luxury jewelry and lifestyle curation, <strong>Carmelian</strong> combines centuries-old artisanal craftsmanship with modern, sustainable practices.</p>
-            <p>Every piece in our collection is thoughtfully designed, meticulously tested, and crafted to last a lifetime. We believe that true luxury lies not only in aesthetics, but in the trust, authenticity, and ethics behind every item we create.</p>
+            <h3>Dressed in Tradition, Styled for Today</h3>
+            <p>Born and raised in <strong>Tirunelveli</strong>, Kjapperals was founded with one simple belief — every person deserves to look and feel their best without breaking the bank.</p>
+            <p>From the vibrant silks of Tamil tradition to the breezy comforts of everyday fashion, our curated collection spans <strong>ethnic wear, western wear, formals, and kids' clothing</strong> — all under one roof at our Palayamkottai showroom.</p>
+            <p>We personally handpick every garment for fabric quality, stitching, and fit before it reaches our shelves. Our promise: honest prices, genuine quality, and a shopping experience that feels like family.</p>
+            <div class="story-stat-row">
+                <div class="story-stat">
+                    <strong>500+</strong>
+                    <span>Styles in Store</span>
+                </div>
+                <div class="story-stat">
+                    <strong>6</strong>
+                    <span>Categories</span>
+                </div>
+                <div class="story-stat">
+                    <strong>5000+</strong>
+                    <span>Happy Customers</span>
+                </div>
+                <div class="story-stat">
+                    <strong>Tirunelveli</strong>
+                    <span>Proudly Local</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Trust & Secure Processing Section -->
+    <!-- ── Trust Cards ────────────────────────────────────────────────── -->
     <section class="trust-section">
         <div class="about-section-header">
-            <span class="about-kicker">TRUST & TRANSPARENCY</span>
-            <h2>Why Shopping With Us Is Safe & Seamless</h2>
+            <span class="about-kicker">WHY CHOOSE US</span>
+            <h2>Quality You Can Feel, Service You Can Trust</h2>
         </div>
 
         <div class="trust-grid">
             <div class="trust-card">
-                <div class="trust-icon">
-                    <i class="ri-shield-check-line"></i>
-                </div>
-                <h4>256-Bit SSL Protection</h4>
-                <p>All payments and user data are encrypted with bank-grade security for 100% safe transactions.</p>
+                <div class="trust-icon"><i class="ri-t-shirt-line"></i></div>
+                <h4>Premium Fabric Quality</h4>
+                <p>Every garment is handpicked for fabric, stitching, and finish. We stock only what we would wear ourselves.</p>
             </div>
-
             <div class="trust-card">
-                <div class="trust-icon">
-                    <i class="ri-truck-line"></i>
-                </div>
-                <h4>Tracked Fast Delivery</h4>
-                <p>Orders are processed within 24 hours with live real-time shipment tracking sent to your inbox.</p>
+                <div class="trust-icon"><i class="ri-truck-line"></i></div>
+                <h4>Fast Local Delivery</h4>
+                <p>Same-day delivery across Tirunelveli for orders placed before 2 PM. Pan-India shipping available too.</p>
             </div>
-
             <div class="trust-card">
-                <div class="trust-icon">
-                    <i class="ri-award-line"></i>
-                </div>
-                <h4>Certified Authenticity</h4>
-                <p>Every piece comes with a hallmark certification of quality, metal purity, and gemstone integrity.</p>
+                <div class="trust-icon"><i class="ri-price-tag-3-line"></i></div>
+                <h4>Best Price Guarantee</h4>
+                <p>Direct sourcing from manufacturers means you get the best price in Tirunelveli — no hidden costs.</p>
             </div>
-
             <div class="trust-card">
-                <div class="trust-icon">
-                    <i class="ri-refresh-line"></i>
-                </div>
-                <h4>7 Days Replacement*</h4>
-                <p>Enjoy complete peace of mind with our hassle-free 7 days replacement guarantee under eligible policy terms.</p>
+                <div class="trust-icon"><i class="ri-exchange-line"></i></div>
+                <h4>Easy 7-Day Exchange</h4>
+                <p>Wrong size? Not happy with the fit? Exchange within 7 days, no questions asked. Your satisfaction is our priority.</p>
             </div>
         </div>
 
-        <!-- Terms & Conditions Note for Returns & Replacement -->
-        <div style="margin-top: 28px; background: rgba(124, 83, 87, 0.04); border: 1px dashed rgba(124, 83, 87, 0.22); border-radius: 16px; padding: 20px 24px; text-align: left;">
+        <div style="margin-top: 28px; background: rgba(124, 83, 87, 0.04); border: 1px dashed rgba(124, 83, 87, 0.22); border-radius: 16px; padding: 20px 24px;">
             <p style="margin: 0; font-size: 0.85rem; color: var(--muted-text-color, #685b5d); line-height: 1.6;">
                 <strong style="color: var(--primary, #7c5357); display: inline-flex; align-items: center; gap: 4px; font-size: 0.9rem; margin-bottom: 4px;">
-                    <i class="ri-information-line"></i> * Terms & Conditions for 7 Days Replacement & Return Policy:
+                    <i class="ri-information-line"></i> Exchange Policy Terms:
                 </strong><br>
-                Replacement requests are eligible within <strong>7 days from the date of order delivery</strong> in case of damaged, defective, or incorrect items received. Items submitted for replacement or return must be unworn, unused, and in their original pristine condition with all price tags, hallmark certificates, and original brand packaging intact.
+                Exchange requests are accepted within <strong>7 days from the date of purchase or delivery</strong> for unworn, unwashed garments with original tags intact. Size exchanges are subject to stock availability. Items purchased on sale are eligible for size exchange only.
             </p>
         </div>
     </section>
 
-    <!-- Showroom Location & Store Details -->
+    <!-- ── Location ───────────────────────────────────────────────────── -->
     <section class="location-section">
         <div class="about-section-header">
-            <span class="about-kicker">STORE LOCATIONS</span>
-            <h2>Visit Our Physical Showroom</h2>
+            <span class="about-kicker">FIND US IN TIRUNELVELI</span>
+            <h2>Visit Our Showroom</h2>
         </div>
 
         <div class="location-grid">
             <div class="location-info-card">
                 <div>
-                    <h3>Carmelian Flagship Showroom</h3>
-                    <p style="color: var(--muted-text-color, #685b5d); line-height: 1.5;">Experience our curated collections in person. Our boutique specialists are on hand to provide personal styling and consultation.</p>
-                    
+                    <h3>Kjapperals — Palayamkottai</h3>
+                    <p style="color: var(--muted-text-color, #685b5d); line-height: 1.5;">Walk in and explore our full collection of ethnic wear, western outfits, formals, and kids' clothing. Our team is ready to help you find the perfect fit.</p>
+
                     <div class="location-details-list">
                         <div class="location-item">
                             <i class="ri-map-pin-2-line"></i>
                             <div>
-                                <strong>Headquarters & Boutique Address</strong>
-                                <p>104 Carmelian Towers, Fashion Avenue<br>MG Road Sector 4, Bengaluru, Karnataka 560001</p>
+                                <strong>Showroom Address</strong>
+                                <p>No. 45, Junction Road, Palayamkottai<br>Tirunelveli – 627 002, Tamil Nadu</p>
                             </div>
                         </div>
-
                         <div class="location-item">
                             <i class="ri-time-line"></i>
                             <div>
-                                <strong>Operating Hours</strong>
-                                <p>Monday – Saturday: 10:00 AM – 8:00 PM<br>Sunday: By Appointment Only</p>
+                                <strong>Store Hours</strong>
+                                <p>Monday – Saturday: 9:00 AM – 9:00 PM<br>Sunday: 10:00 AM – 6:00 PM</p>
                             </div>
                         </div>
-
                         <div class="location-item">
                             <i class="ri-phone-line"></i>
                             <div>
-                                <strong>Direct Desk</strong>
-                                <p>+91 (080) 4567-8900 / +91 98765 43210</p>
+                                <strong>Call / WhatsApp</strong>
+                                <p>+91 94876 12345</p>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <i class="ri-bus-2-line"></i>
+                            <div>
+                                <strong>How to Reach</strong>
+                                <p>Near Palayamkottai Bus Stand. 5 min walk from Tirunelveli Junction Railway Station.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <a href="#contactForm" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--primary, #7c5357); color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; width: fit-content; margin-top: 10px;">
-                    Book a Private Appointment <i class="ri-arrow-right-line"></i>
+                <a href="#contactForm" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--primary,#7c5357);color:#fff;text-decoration:none;padding:12px 24px;border-radius:8px;font-weight:600;width:fit-content;margin-top:16px;">
+                    Send Us a Message <i class="ri-arrow-right-line"></i>
                 </a>
             </div>
 
-            <!-- Interactive Map Preview Card -->
             <div class="map-card">
-                <iframe 
-                    title="Carmelian Showroom Map Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.986877969372!2d77.608354!3d12.972322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae167d4f0d7e79%3A0x6b099f67a2d3b2f5!2sMG%20Road%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-                    allowfullscreen="" 
-                    loading="lazy" 
+                <iframe
+                    title="Kjapperals Showroom Location – Palayamkottai, Tirunelveli"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3948.623446787!2d77.73200157535374!3d8.718823291355485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04102fcf2be2c7%3A0xa800fbe3ec3e67c4!2sPalayamkottai%2C%20Tirunelveli%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                    allowfullscreen=""
+                    loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
         </div>
     </section>
 
-    <!-- Contact & Concierge Form -->
+    <!-- ── Contact Form ───────────────────────────────────────────────── -->
     <section class="contact-section" id="contactSection">
         <div class="contact-grid">
             <div class="contact-info-side">
-                <span class="about-kicker">24/7 SUPPORT</span>
-                <h3>Get in Touch With Our Concierge</h3>
-                <p>Have a question regarding custom orders, shipping times, or jewelry care? Our customer concierge team is available to assist you promptly.</p>
+                <span class="about-kicker">GET IN TOUCH</span>
+                <h3>We're Here to Help</h3>
+                <p>Questions about sizing, bulk orders, or availability? Our team at Kjapperals is happy to assist you every day of the week.</p>
 
                 <div class="contact-methods">
-                    <a href="mailto:support@carmelian.com" class="method-card">
+                    <a href="mailto:hello@kjapperals.com" class="method-card">
                         <i class="ri-mail-send-line"></i>
                         <div>
                             <small>Email Us</small>
-                            <span>support@carmelian.com</span>
+                            <span>hello@kjapperals.com</span>
                         </div>
                     </a>
-
-                    <a href="tel:+919876543210" class="method-card">
-                        <i class="ri-customer-service-2-line"></i>
+                    <a href="tel:+919487612345" class="method-card">
+                        <i class="ri-whatsapp-line"></i>
                         <div>
-                            <small>Call Support</small>
-                            <span>+91 98765 43210 (Mon-Sat)</span>
+                            <small>WhatsApp / Call</small>
+                            <span>+91 94876 12345</span>
                         </div>
                     </a>
+                    <div class="method-card">
+                        <i class="ri-map-pin-line"></i>
+                        <div>
+                            <small>Visit Us</small>
+                            <span>Junction Road, Palayamkottai, Tirunelveli</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="contact-form-side">
                 <form id="contactForm" onsubmit="submitContactForm(event)">
-                    <h4 style="margin: 0 0 10px 0; font-family: 'Noto Serif', serif; font-size: 1.3rem; color: var(--text-dark, #1a1c1a);">Send Us a Message</h4>
-                    
+                    <h4 style="margin:0 0 10px 0;font-family:'Noto Serif',serif;font-size:1.3rem;color:var(--text-dark,#1a1c1a);">Send Us a Message</h4>
+
                     <div class="form-group">
                         <label for="contactName">Your Name</label>
-                        <input type="text" id="contactName" placeholder="e.g. Eleanor Vance" required>
+                        <input type="text" id="contactName" placeholder="e.g. Ravi Kumar" required>
                     </div>
-
                     <div class="form-group">
                         <label for="contactEmail">Email Address</label>
-                        <input type="email" id="contactEmail" placeholder="e.g. eleanor@example.com" required>
+                        <input type="email" id="contactEmail" placeholder="e.g. ravi@example.com" required>
                     </div>
-
                     <div class="form-group">
                         <label for="contactSubject">Subject</label>
-                        <input type="text" id="contactSubject" placeholder="Order Inquiry, Custom Fitting, etc." required>
+                        <input type="text" id="contactSubject" placeholder="Bulk Order, Size Query, New Arrivals…" required>
                     </div>
-
                     <div class="form-group">
                         <label for="contactMessage">Message</label>
                         <textarea id="contactMessage" rows="4" placeholder="How can we help you today?" required></textarea>
                     </div>
-
                     <button type="submit" class="contact-submit-btn">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
+
 </main>
 {% endblock %}
 

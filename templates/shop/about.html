@@ -1,6 +1,6 @@
 {% extends 'shop/base.html' %}
 
-{% block title %}About Us - Kjapperals{% endblock %}
+{% block title %}About Us - {{ store_contact.sender_name }}{% endblock %}
 {% block body_class %}about-page{% endblock %}
 
 {% block extra_css %}
@@ -276,6 +276,90 @@
     border: 0;
 }
 
+/* --- 3-Column Showroom Cards --- */
+.showroom-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.showroom-card {
+    background: #ffffff;
+    border: 1px solid rgba(124, 83, 87, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+}
+
+.showroom-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px 14px;
+    border-bottom: 1px solid rgba(124, 83, 87, 0.07);
+}
+
+.showroom-card-header i {
+    font-size: 1.8rem;
+    color: var(--primary, #7c5357);
+    flex-shrink: 0;
+}
+
+.showroom-card-header strong {
+    display: block;
+    font-family: 'Noto Serif', serif;
+    font-size: 1.05rem;
+    color: var(--text-dark, #1a1c1a);
+}
+
+.showroom-card-header span {
+    font-size: 0.78rem;
+    color: var(--primary, #7c5357);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.showroom-map {
+    flex-shrink: 0;
+    height: 200px;
+    background: #f5f2ed;
+}
+
+.showroom-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+.showroom-details {
+    padding: 16px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.showroom-details p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--muted-text-color, #685b5d);
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    line-height: 1.45;
+}
+
+.showroom-details p i {
+    color: var(--primary, #7c5357);
+    font-size: 1rem;
+    margin-top: 1px;
+    flex-shrink: 0;
+}
+
 /* --- Contact Details & Inquiry Form --- */
 .contact-section {
     background: linear-gradient(135deg, rgba(124, 83, 87, 0.04) 0%, rgba(124, 83, 87, 0.01) 100%);
@@ -417,6 +501,9 @@
     .contact-grid {
         grid-template-columns: 1fr;
     }
+    .showroom-cards {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media (max-width: 640px) {
@@ -434,6 +521,15 @@
     .contact-form-side form {
         padding: 20px;
     }
+    .showroom-cards {
+        grid-template-columns: 1fr;
+    }
+    .story-grid {
+        grid-template-columns: 1fr;
+    }
+    .story-img {
+        display: none;
+    }
 }
 </style>
 {% endblock %}
@@ -444,19 +540,19 @@
     <!-- ── Hero ─────────────────────────────────────────────────────── -->
     <section class="about-hero">
         <span class="about-kicker">OUR STORY &amp; PROMISE</span>
-        <h1>About Kjapperals</h1>
+        <h1>About {{ store_contact.sender_name }}</h1>
         <p>Your trusted garments destination in the heart of Tirunelveli — bringing you the finest ethnic wear, western fashion, and kids' clothing since day one.</p>
     </section>
 
     <!-- ── Story ─────────────────────────────────────────────────────── -->
     <section class="story-grid">
         <div class="story-img">
-            <img src="/media/carousel/slide_ethnic.jpg" alt="Kjapperals Garments Collection" loading="lazy">
+            <img src="/media/carousel/slide_ethnic.jpg" alt="{{ store_contact.sender_name }} Garments Collection" loading="lazy">
         </div>
         <div class="story-content">
             <h3>Dressed in Tradition, Styled for Today</h3>
-            <p>Born and raised in <strong>Tirunelveli</strong>, Kjapperals was founded with one simple belief — every person deserves to look and feel their best without breaking the bank.</p>
-            <p>From the vibrant silks of Tamil tradition to the breezy comforts of everyday fashion, our curated collection spans <strong>ethnic wear, western wear, formals, and kids' clothing</strong> — all under one roof at our Palayamkottai showroom.</p>
+            <p>Born and raised in <strong>Tirunelveli</strong>, {{ store_contact.sender_name }} was founded with one simple belief — every person deserves to look and feel their best without breaking the bank.</p>
+            <p>From the vibrant silks of Tamil tradition to the breezy comforts of everyday fashion, our curated collection spans <strong>ethnic wear, western wear, formals, and kids' clothing</strong> — all under one roof at our showrooms across Tirunelveli, Tenkasi, and Alangulam.</p>
             <p>We personally handpick every garment for fabric quality, stitching, and fit before it reaches our shelves. Our promise: honest prices, genuine quality, and a shopping experience that feels like family.</p>
             <div class="story-stat-row">
                 <div class="story-stat">
@@ -519,66 +615,89 @@
         </div>
     </section>
 
-    <!-- ── Location ───────────────────────────────────────────────────── -->
+    <!-- ── Locations ────────────────────────────────────────────────────── -->
     <section class="location-section">
         <div class="about-section-header">
-            <span class="about-kicker">FIND US IN TIRUNELVELI</span>
-            <h2>Visit Our Showroom</h2>
+            <span class="about-kicker">3 SHOWROOMS NEAR YOU</span>
+            <h2>Visit Us — Tirunelveli, Tenkasi &amp; Alangulam</h2>
         </div>
 
-        <div class="location-grid">
-            <div class="location-info-card">
-                <div>
-                    <h3>Kjapperals — Palayamkottai</h3>
-                    <p style="color: var(--muted-text-color, #685b5d); line-height: 1.5;">Walk in and explore our full collection of ethnic wear, western outfits, formals, and kids' clothing. Our team is ready to help you find the perfect fit.</p>
+        <!-- 3-column showroom cards -->
+        <div class="showroom-cards">
 
-                    <div class="location-details-list">
-                        <div class="location-item">
-                            <i class="ri-map-pin-2-line"></i>
-                            <div>
-                                <strong>Showroom Address</strong>
-                                <p>No. 45, Junction Road, Palayamkottai<br>Tirunelveli – 627 002, Tamil Nadu</p>
-                            </div>
-                        </div>
-                        <div class="location-item">
-                            <i class="ri-time-line"></i>
-                            <div>
-                                <strong>Store Hours</strong>
-                                <p>Monday – Saturday: 9:00 AM – 9:00 PM<br>Sunday: 10:00 AM – 6:00 PM</p>
-                            </div>
-                        </div>
-                        <div class="location-item">
-                            <i class="ri-phone-line"></i>
-                            <div>
-                                <strong>Call / WhatsApp</strong>
-                                <p>+91 94876 12345</p>
-                            </div>
-                        </div>
-                        <div class="location-item">
-                            <i class="ri-bus-2-line"></i>
-                            <div>
-                                <strong>How to Reach</strong>
-                                <p>Near Palayamkottai Bus Stand. 5 min walk from Tirunelveli Junction Railway Station.</p>
-                            </div>
-                        </div>
+            <!-- Card 1: Palayamkottai -->
+            <div class="showroom-card">
+                <div class="showroom-card-header">
+                    <i class="ri-store-2-line"></i>
+                    <div>
+                        <strong>Palayamkottai</strong>
+                        <span>Flagship Store</span>
                     </div>
                 </div>
-
-                <a href="#contactForm" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--primary,#7c5357);color:#fff;text-decoration:none;padding:12px 24px;border-radius:8px;font-weight:600;width:fit-content;margin-top:16px;">
-                    Send Us a Message <i class="ri-arrow-right-line"></i>
-                </a>
+                <div class="showroom-map">
+                    <iframe
+                        title="Showroom – Palayamkottai, Tirunelveli"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3948.623446787!2d77.73200157535374!3d8.718823291355485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04102fcf2be2c7%3A0xa800fbe3ec3e67c4!2sPalayamkottai%2C%20Tirunelveli%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000001!5m2!1sen!2sin"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="showroom-details">
+                    <p><i class="ri-map-pin-line"></i> No. 45, Junction Road, Palayamkottai, Tirunelveli – 627 002</p>
+                    <p><i class="ri-time-line"></i> Mon–Sat: 9 AM – 9 PM &nbsp;|&nbsp; Sun: 10 AM – 6 PM</p>
+                    <p><i class="ri-phone-line"></i> +91 94876 12345</p>
+                    <p><i class="ri-bus-2-line"></i> Near Palayamkottai Bus Stand</p>
+                </div>
             </div>
 
-            <div class="map-card">
-                <iframe
-                    title="Kjapperals Showroom Location – Palayamkottai, Tirunelveli"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3948.623446787!2d77.73200157535374!3d8.718823291355485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04102fcf2be2c7%3A0xa800fbe3ec3e67c4!2sPalayamkottai%2C%20Tirunelveli%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+            <!-- Card 2: Tenkasi -->
+            <div class="showroom-card">
+                <div class="showroom-card-header">
+                    <i class="ri-store-2-line"></i>
+                    <div>
+                        <strong>Tenkasi</strong>
+                        <span>Branch Store</span>
+                    </div>
+                </div>
+                <div class="showroom-map">
+                    <iframe
+                        title="Showroom – Tenkasi, Tamil Nadu"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.5!2d77.3152!3d8.9593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04ea9d20000001%3A0x1!2sTenkasi%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000002!5m2!1sen!2sin"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="showroom-details">
+                    <p><i class="ri-map-pin-line"></i> Main Bazaar Road, Tenkasi – 627 811, Tamil Nadu</p>
+                    <p><i class="ri-time-line"></i> Mon–Sat: 9 AM – 9 PM &nbsp;|&nbsp; Sun: 10 AM – 6 PM</p>
+                    <p><i class="ri-phone-line"></i> +91 94876 12346</p>
+                    <p><i class="ri-bus-2-line"></i> Near Tenkasi Bus Stand</p>
+                </div>
             </div>
-        </div>
+
+            <!-- Card 3: Alangulam -->
+            <div class="showroom-card">
+                <div class="showroom-card-header">
+                    <i class="ri-store-2-line"></i>
+                    <div>
+                        <strong>Alangulam</strong>
+                        <span>Branch Store</span>
+                    </div>
+                </div>
+                <div class="showroom-map">
+                    <iframe
+                        title="Showroom – Alangulam, Tamil Nadu"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.5!2d77.5700!3d8.8561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04e000000000bb%3A0x2!2sAlangulam%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000003!5m2!1sen!2sin"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="showroom-details">
+                    <p><i class="ri-map-pin-line"></i> Anna Salai, Alangulam – 627 851, Tamil Nadu</p>
+                    <p><i class="ri-time-line"></i> Mon–Sat: 9 AM – 9 PM &nbsp;|&nbsp; Sun: 10 AM – 6 PM</p>
+                    <p><i class="ri-phone-line"></i> +91 94876 12347</p>
+                    <p><i class="ri-bus-2-line"></i> Near Alangulam Bus Stand</p>
+                </div>
+            </div>
+
+        </div><!-- /.showroom-cards -->
     </section>
 
     <!-- ── Contact Form ───────────────────────────────────────────────── -->
@@ -587,30 +706,36 @@
             <div class="contact-info-side">
                 <span class="about-kicker">GET IN TOUCH</span>
                 <h3>We're Here to Help</h3>
-                <p>Questions about sizing, bulk orders, or availability? Our team at Kjapperals is happy to assist you every day of the week.</p>
+                <p>Questions about sizing, bulk orders, or availability? Our team at {{ store_contact.sender_name }} is happy to assist you every day of the week.</p>
 
                 <div class="contact-methods">
-                    <a href="mailto:hello@kjapperals.com" class="method-card">
+                    {% if store_contact.contact_email %}
+                    <a href="mailto:{{ store_contact.contact_email }}" class="method-card">
                         <i class="ri-mail-send-line"></i>
                         <div>
                             <small>Email Us</small>
-                            <span>hello@kjapperals.com</span>
+                            <span>{{ store_contact.contact_email }}</span>
                         </div>
                     </a>
-                    <a href="tel:+919487612345" class="method-card">
+                    {% endif %}
+                    {% if store_contact.contact_phone %}
+                    <a href="tel:{{ store_contact.contact_phone }}" class="method-card">
                         <i class="ri-whatsapp-line"></i>
                         <div>
                             <small>WhatsApp / Call</small>
-                            <span>+91 94876 12345</span>
+                            <span>{{ store_contact.contact_phone }}</span>
                         </div>
                     </a>
+                    {% endif %}
+                    {% if store_contact.sender_address %}
                     <div class="method-card">
                         <i class="ri-map-pin-line"></i>
                         <div>
                             <small>Visit Us</small>
-                            <span>Junction Road, Palayamkottai, Tirunelveli</span>
+                            <span>{{ store_contact.sender_address }}</span>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
 

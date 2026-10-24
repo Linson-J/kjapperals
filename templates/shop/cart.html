@@ -1,6 +1,6 @@
 {% extends 'shop/base.html' %}
 
-{% block title %}My Cart - Carmelian{% endblock %}
+{% block title %}My Cart - {{ store_contact.sender_name }}{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -647,7 +647,7 @@
         <div class="cart-state-card">
             <div class="cart-state-icon"><i class="ri-shopping-bag-line"></i></div>
             <h2>Unlock Your Cart</h2>
-            <p>Access your curated list of premium garments, track sizing, and enjoy secure checkouts. Log in to your Carmelian account to view your items.</p>
+            <p>Access your curated list of premium garments, track sizing, and enjoy secure checkouts. Log in to your {{ store_contact.sender_name }} account to view your items.</p>
             <a href="javascript:void(0)" class="cart-state-btn" onclick="window.openAuthModal()">Sign In / Sign Up</a>
         </div>
     {% else %}

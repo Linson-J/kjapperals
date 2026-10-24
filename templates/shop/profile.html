@@ -1,7 +1,7 @@
 {% extends 'shop/base.html' %}
 {% load static %}
 
-{% block title %}My Profile - Carmelian{% endblock %}
+{% block title %}My Profile - {{ store_contact.sender_name }}{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -991,7 +991,7 @@
           style="font-size: 3rem; color: var(--primary); opacity: 0.5; margin-bottom: 15px; display: inline-block;"></i>
         <h3 style="font-family: Georgia, serif; font-size: 1.3rem; margin: 0 0 10px 0;">No Orders Placed Yet</h3>
         <p style="color: var(--text-light); max-width: 400px; margin: 0 auto 20px auto;">You haven't ordered anything
-          from Carmelian yet. Explore our handcrafted, sustainable jewelry products to make your first purchase.</p>
+          from {{ store_contact.sender_name }} yet. Explore our latest collection and make your first purchase.</p>
         <a href="/shop/" class="save-btn" style="text-decoration: none;">
           <i class="ri-store-2-line"></i> Start Shopping
         </a>

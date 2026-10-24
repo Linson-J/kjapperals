@@ -1,8 +1,8 @@
 <footer class="global-footer" aria-labelledby="global-footer-title">
     <div class="global-footer__inner">
         <section class="global-footer__brand">
-            <a href="/" class="global-footer__logo footer-brand-draw{% if store_contact.brand_logo %} footer-brand-with-logo{% endif %}" id="global-footer-title" aria-label="{{ store_contact.sender_name|default:'Carmelian' }}">
-                <span class="sr-only">{{ store_contact.sender_name|default:"Carmelian" }}</span>
+            <a href="/" class="global-footer__logo footer-brand-draw{% if store_contact.brand_logo %} footer-brand-with-logo{% endif %}" id="global-footer-title" aria-label="{{ store_contact.sender_name }}">
+                <span class="sr-only">{{ store_contact.sender_name }}</span>
                 {% if store_contact.brand_logo %}
                 <img class="footer-brand-logo-img" src="{{ store_contact.brand_logo.url }}" alt="" aria-hidden="true">
                 {% endif %}
@@ -97,7 +97,7 @@
     </div>
 
     <div class="global-footer__bottom">
-        <p>&copy; 2026 {{ store_contact.sender_name|default:"Carmelian" }}. All rights reserved.</p>
+        <p>&copy; 2026 {{ store_contact.sender_name }}. All rights reserved.</p>
         <nav aria-label="Legal links">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms &amp; Conditions</a>

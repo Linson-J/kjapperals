@@ -7,7 +7,7 @@
                 <img class="brand-logo-img brand-logo-img--mobile" src="{{ store_contact.brand_logo.url }}" alt="{{ store_contact.sender_name|default:'Carmelian' }}">
                 <span class="brand-logo-text">{{ store_contact.sender_name|default:"Carmelian" }}</span>
             {% else %}
-                Carmelian
+                {{ store_contact.sender_name }}
             {% endif %}
         </a>
         <i class="ri-close-line close-menu" id="closeMenu"></i>
@@ -37,7 +37,7 @@
                     <img class="brand-logo-img" src="{{ store_contact.brand_logo.url }}" alt="{{ store_contact.sender_name|default:'Carmelian' }}">
                     <span class="brand-logo-text">{{ store_contact.sender_name|default:"Carmelian" }}</span>
                 {% else %}
-                    Carmelian
+                    {{ store_contact.sender_name }}
                 {% endif %}
             </a>
             <button type="button" class="mobile-header-search nav-icon" data-search-trigger title="Search" aria-label="Search">

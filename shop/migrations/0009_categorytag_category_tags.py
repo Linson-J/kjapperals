@@ -34,41 +34,21 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.SeparateDatabaseAndState(
-            database_operations=[
-                migrations.RunSQL(
-                    sql=(
-                        'CREATE TABLE IF NOT EXISTS `shop_category_tags` ('
-                        '`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, '
-                        '`name` varchar(100) NOT NULL UNIQUE, '
-                        '`slug` varchar(100) NOT NULL UNIQUE, '
-                        '`is_system` bool NOT NULL, '
-                        '`is_active` bool NOT NULL, '
-                        '`created_at` datetime(6) NOT NULL, '
-                        '`updated_at` datetime(6) NOT NULL'
-                        ')'
-                    ),
-                    reverse_sql='DROP TABLE IF EXISTS `shop_category_tags`',
-                ),
+        migrations.CreateModel(
+            name='CategoryTag',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('name', models.CharField(max_length=100, unique=True)),
+                ('slug', models.SlugField(blank=True, max_length=100, unique=True)),
+                ('is_system', models.BooleanField(default=False)),
+                ('is_active', models.BooleanField(default=True)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
             ],
-            state_operations=[
-                migrations.CreateModel(
-                    name='CategoryTag',
-                    fields=[
-                        ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                        ('name', models.CharField(max_length=100, unique=True)),
-                        ('slug', models.SlugField(blank=True, max_length=100, unique=True)),
-                        ('is_system', models.BooleanField(default=False)),
-                        ('is_active', models.BooleanField(default=True)),
-                        ('created_at', models.DateTimeField(auto_now_add=True)),
-                        ('updated_at', models.DateTimeField(auto_now=True)),
-                    ],
-                    options={
-                        'db_table': 'shop_category_tags',
-                        'ordering': ['name'],
-                    },
-                ),
-            ],
+            options={
+                'db_table': 'shop_category_tags',
+                'ordering': ['name'],
+            },
         ),
         migrations.AddField(
             model_name='category',

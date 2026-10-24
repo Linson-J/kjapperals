@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-pip install -r requirements.txt
+pip install --break-system-packages -r requirements.txt
 
 # Tell Django this is the build phase — use SQLite, skip DB connection
 export VERCEL_BUILD=1

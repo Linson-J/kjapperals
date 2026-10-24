@@ -39,6 +39,11 @@ if env_bool('ENABLE_NGROK', DEBUG):
         if origin not in CSRF_TRUSTED_ORIGINS:
             CSRF_TRUSTED_ORIGINS.append(origin)
 
+# Vercel domains
+if os.environ.get('VERCEL'):
+    ALLOWED_HOSTS.append('.vercel.app')
+    CSRF_TRUSTED_ORIGINS.append('https://*.vercel.app')
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -55,11 +60,14 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
     'shop.middleware.AdminAPITokenMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -136,6 +144,12 @@ AUTH_PASSWORD_VALIDATORS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Cloudinary — used on Vercel (no persistent filesystem)
+_cloudinary_url = os.environ.get('CLOUDINARY_URL')
+if _cloudinary_url:
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    CLOUDINARY_STORAGE = {'CLOUDINARY_URL': _cloudinary_url}
+
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
@@ -168,6 +182,7 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # --- Django-Allauth Configuration ---
 AUTHENTICATION_BACKENDS = [

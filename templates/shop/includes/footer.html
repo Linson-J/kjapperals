@@ -6,19 +6,37 @@
                 {% if store_contact.brand_logo %}
                 <img class="footer-brand-logo-img" src="{{ store_contact.brand_logo.url }}" alt="" aria-hidden="true">
                 {% endif %}
-                <svg class="footer-brand-draw__svg" viewBox="0 0 282 64" role="img" aria-hidden="true">
-                    <path class="line footer-brand-draw__line" d="M43 17 C25 8 12 22 16 39 C21 58 48 58 58 41" />
-                    <path class="line footer-brand-draw__line" d="M70 39 C68 31 83 27 86 37 C89 48 72 51 70 40 M87 31 L87 50" />
-                    <path class="line footer-brand-draw__line" d="M101 50 L101 31 M101 38 C106 30 114 30 118 36" />
-                    <path class="line footer-brand-draw__line" d="M129 50 L129 31 M129 36 C134 30 143 31 143 40 L143 50 M143 38 C148 31 157 32 157 41 L157 50" />
-                    <path class="line footer-brand-draw__line" d="M172 40 C186 41 187 31 177 30 C166 30 163 49 179 50 C184 50 188 48 191 45" />
-                    <path class="line footer-brand-draw__line" d="M202 16 L202 50" />
-                    <path class="line footer-brand-draw__line" d="M215 31 L215 50 M215 20 L215 22" />
-                    <path class="line footer-brand-draw__line" d="M228 39 C226 31 241 27 244 37 C247 48 230 51 228 40 M245 31 L245 50" />
-                    <path class="line footer-brand-draw__line" d="M258 50 L258 31 M258 37 C263 30 273 31 273 42 L273 50" />
+                <svg class="footer-brand-draw__svg" viewBox="0 0 224 70" role="img" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="kj-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="224" y2="0">
+                            <stop offset="0%"   stop-color="#F5A623"/>
+                            <stop offset="45%"  stop-color="#E8314A"/>
+                            <stop offset="100%" stop-color="#7134C5"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- K -->
+                    <path class="line footer-brand-draw__line" style="stroke:url(#kj-grad)" d="M10 16 L10 50 M10 32 L32 16 M10 32 L32 50" />
+                    <!-- j -->
+                    <path class="line footer-brand-draw__line" style="stroke:url(#kj-grad)" d="M46 20 L46 22 M46 30 L46 58 C46 64 40 65 37 61" />
+                    <!-- a -->
+                    <path class="line footer-brand-draw__line" style="stroke:url(#kj-grad)" d="M75 37 C73 28 59 26 57 37 C55 48 63 53 75 50 L75 30" />
+                    <!-- p -->
+                    <path class="line footer-brand-draw__line" style="stroke:url(#kj-grad)" d="M82 30 L82 62 M82 37 C86 29 99 29 99 40 C99 51 86 53 82 44" />
+                    <!-- p -->
+                    <path class="line footer-brand-draw__line" style="stroke:url(#kj-grad)" d="M105 30 L105 62 M105 37 C109 29 122 29 122 40 C122 51 109 53 105 44" />
+                    <!-- e -->
+                    <path class="line footer-brand-draw__line" style="stroke:url(#kj-grad)" d="M128 40 C142 41 143 29 133 28 C123 28 120 50 136 51 C141 51 145 49 147 46" />
+                    <!-- r -->
+                    <path class="line footer-brand-draw__line" style="stroke:url(#kj-grad)" d="M154 50 L154 30 M154 38 C158 30 167 30 167 37" />
+                    <!-- a -->
+                    <path class="line footer-brand-draw__line" style="stroke:url(#kj-grad)" d="M191 37 C189 28 175 26 173 37 C171 48 179 53 191 50 L191 30" />
+                    <!-- l -->
+                    <path class="line footer-brand-draw__line" style="stroke:url(#kj-grad)" d="M197 16 L197 50" />
+                    <!-- s -->
+                    <path class="line footer-brand-draw__line" style="stroke:url(#kj-grad)" d="M214 33 C212 27 200 27 200 34 C200 40 213 42 213 48 C213 54 200 54 200 49" />
                 </svg>
             </a>
-            <p>Timeless pieces and curated essentials designed with soft minimalism, craft, and everyday elegance in mind.</p>
+            <p>Quality garments, everyday style — proudly serving Tirunelveli, Tenkasi &amp; Alangulam.</p>
             {% if footer_social_links %}
             <div class="global-footer__social" aria-label="Social media links">
                 {% for link in footer_social_links %}

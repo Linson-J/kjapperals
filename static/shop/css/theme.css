@@ -111,6 +111,20 @@ a{
     display:inline-block;
 }
 
+/* Logo gradient text — applied to brand name wherever it shows as text */
+.brand-name-text{
+    background:linear-gradient(90deg,#F5A623 0%,#E8314A 48%,#7134C5 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    color:transparent;
+}
+
+/* Mobile search bar — hidden on desktop, shown on mobile */
+.mobile-search-bar{
+    display:none;
+}
+
 .brand-logo-img{
     display:block;
     width:auto;
@@ -2044,7 +2058,48 @@ a.home-news-ticker__item:hover{
     }
 
     .navbar{
-        height:76px;
+        height:auto;
+    }
+
+    .nav-wrapper{
+        height:72px;
+        min-height:72px;
+    }
+
+    /* Mobile search bar */
+    .mobile-search-bar{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        padding:0 20px 12px;
+        cursor:pointer;
+    }
+
+    .mobile-search-bar i{
+        color:var(--primary);
+        font-size:20px;
+        flex-shrink:0;
+        margin-left:4px;
+    }
+
+    .mobile-search-input{
+        flex:1;
+        height:40px;
+        border:1.5px solid rgba(113,52,197,0.25);
+        border-radius:24px;
+        padding:0 16px 0 12px;
+        font-size:14px;
+        background:rgba(113,52,197,0.05);
+        color:var(--text-dark);
+        cursor:pointer;
+        pointer-events:none;
+        outline:none;
+        font-family:inherit;
+    }
+
+    .mobile-search-input::placeholder{
+        color:var(--text-light);
+        font-size:13px;
     }
 
     .logo{
@@ -2082,22 +2137,7 @@ a.home-news-ticker__item:hover{
     }
 
     .mobile-header-search.nav-icon{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        width:40px;
-        height:40px;
-        padding:0;
-        border:0;
-        border-radius:50%;
-        background:rgba(0, 0, 0, 0.04);
-        color:var(--text-dark);
-        cursor:pointer;
-    }
-
-    .mobile-header-search i{
-        font-size:22px;
-        line-height:1;
+        display:none;
     }
 
     .mobile-bottom-nav{

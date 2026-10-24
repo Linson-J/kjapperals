@@ -2,12 +2,12 @@
 
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-top">
-        <a href="/" class="logo brand-logo-link{% if store_contact.brand_logo %} brand-logo-link--with-image{% endif %}" aria-label="{{ store_contact.sender_name|default:'Carmelian' }}">
+        <a href="/" class="logo brand-logo-link{% if store_contact.brand_logo %} brand-logo-link--with-image{% endif %}" aria-label="{{ store_contact.sender_name }}">
             {% if store_contact.brand_logo %}
-                <img class="brand-logo-img brand-logo-img--mobile" src="{{ store_contact.brand_logo.url }}" alt="{{ store_contact.sender_name|default:'Carmelian' }}">
-                <span class="brand-logo-text">{{ store_contact.sender_name|default:"Carmelian" }}</span>
+                <img class="brand-logo-img brand-logo-img--mobile" src="{{ store_contact.brand_logo.url }}" alt="{{ store_contact.sender_name }}">
+                <span class="brand-logo-text brand-name-text">{{ store_contact.sender_name }}</span>
             {% else %}
-                {{ store_contact.sender_name }}
+                <span class="brand-name-text">{{ store_contact.sender_name }}</span>
             {% endif %}
         </a>
         <i class="ri-close-line close-menu" id="closeMenu"></i>
@@ -32,17 +32,14 @@
     <div class="nav-wrapper">
         <div class="nav-left">
             <i class="ri-menu-line menu-btn" id="menuBtn"></i>
-            <a href="/" class="logo brand-logo-link{% if store_contact.brand_logo %} brand-logo-link--with-image{% endif %}" aria-label="{{ store_contact.sender_name|default:'Carmelian' }}">
+            <a href="/" class="logo brand-logo-link{% if store_contact.brand_logo %} brand-logo-link--with-image{% endif %}" aria-label="{{ store_contact.sender_name }}">
                 {% if store_contact.brand_logo %}
-                    <img class="brand-logo-img" src="{{ store_contact.brand_logo.url }}" alt="{{ store_contact.sender_name|default:'Carmelian' }}">
-                    <span class="brand-logo-text">{{ store_contact.sender_name|default:"Carmelian" }}</span>
+                    <img class="brand-logo-img" src="{{ store_contact.brand_logo.url }}" alt="{{ store_contact.sender_name }}">
+                    <span class="brand-logo-text brand-name-text">{{ store_contact.sender_name }}</span>
                 {% else %}
-                    {{ store_contact.sender_name }}
+                    <span class="brand-name-text">{{ store_contact.sender_name }}</span>
                 {% endif %}
             </a>
-            <button type="button" class="mobile-header-search nav-icon" data-search-trigger title="Search" aria-label="Search">
-                <i class="ri-search-line"></i>
-            </button>
             <div class="nav-links">
                 <a href="/shop/">Shop</a>
                 <div class="nav-dropdown-trigger">
@@ -103,6 +100,11 @@
             </button>
             {% endif %}
         </div>
+    </div>
+    <!-- Mobile-only search bar row -->
+    <div class="mobile-search-bar" data-search-trigger role="search" aria-label="Search">
+        <i class="ri-search-line"></i>
+        <input type="text" class="mobile-search-input" placeholder="Search sarees, kurtas, dresses…" readonly tabindex="-1" aria-label="Search products">
     </div>
 </nav>
 

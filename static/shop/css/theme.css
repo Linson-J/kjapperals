@@ -2103,7 +2103,7 @@ a.home-news-ticker__item:hover{
     }
 
     .logo{
-        font-size:36px;
+        font-size:28px;
     }
 
     .brand-logo-img{
@@ -2117,10 +2117,9 @@ a.home-news-ticker__item:hover{
     }
 
     .brand-logo-text{
-        max-width:130px;
-        overflow:hidden;
-        text-overflow:ellipsis;
-        white-space:nowrap;
+        max-width:none;
+        overflow:visible;
+        white-space:normal;
     }
 
     .mobile-menu{

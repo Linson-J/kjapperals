@@ -166,7 +166,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Cloudinary — used on Vercel (no persistent filesystem)
 _cloudinary_url = os.environ.get('CLOUDINARY_URL')
 if _cloudinary_url:
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
     CLOUDINARY_STORAGE = {'CLOUDINARY_URL': _cloudinary_url}
 
 REST_FRAMEWORK = {
@@ -201,7 +200,21 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Django 5.1+ removed DEFAULT_FILE_STORAGE / STATICFILES_STORAGE — use STORAGES.
+# CompressedStaticFilesStorage (no manifest) because the Vercel lambda doesn't ship
+# staticfiles/staticfiles.json; Vercel serves /static/ from staticfiles_build.
+STORAGES = {
+    'default': {
+        'BACKEND': (
+            'cloudinary_storage.storage.MediaCloudinaryStorage'
+            if _cloudinary_url
+            else 'django.core.files.storage.FileSystemStorage'
+        ),
+    },
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',
+    },
+}
 
 # --- Django-Allauth Configuration ---
 AUTHENTICATION_BACKENDS = [

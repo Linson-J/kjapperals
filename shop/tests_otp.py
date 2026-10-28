@@ -32,7 +32,7 @@ class OTPSystemTestCase(TestCase):
         response = self.client.post(
             '/admin-panel/settings/',
             data=json.dumps({
-                'sender_email': 'security@carmelian.com',
+                'sender_email': 'security@kjapperals.com',
                 'otp_length': 8,
                 'otp_expiry_minutes': 10,
                 'resend_cooldown_seconds': 90,
@@ -44,7 +44,7 @@ class OTPSystemTestCase(TestCase):
         self.assertTrue(res_data['success'])
 
         cfg = OTPSettings.current()
-        self.assertEqual(cfg.sender_email, 'security@carmelian.com')
+        self.assertEqual(cfg.sender_email, 'security@kjapperals.com')
         self.assertEqual(cfg.otp_length, 8)
         self.assertEqual(cfg.otp_expiry_minutes, 10)
         self.assertEqual(cfg.resend_cooldown_seconds, 90)

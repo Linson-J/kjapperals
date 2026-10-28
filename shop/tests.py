@@ -505,7 +505,7 @@ class OrderCancellationAndReturnTests(APITestCase):
         session.save()
 
         settings = StoreAddressSettings.current()
-        settings.sender_name = 'Carmelian'
+        settings.sender_name = 'Kj Apperals'
         settings.sender_phone = '9999999999'
         settings.sender_address = 'Sender Line 1\nSender Line 2'
         settings.save()

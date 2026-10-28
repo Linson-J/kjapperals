@@ -544,7 +544,7 @@ def admin_settings(request):
     gst_rates = GSTRate.objects.all()
 
     def save_store_address_settings(data, files=None):
-        sender_name = data.get('sender_name', '').strip() or 'Carmelian'
+        sender_name = data.get('sender_name', '').strip() or 'Kj Apperals'
         sender_phone = data.get('sender_phone', '').strip()
         sender_address = data.get('sender_address', '').strip()
         contact_email = data.get('contact_email', '').strip()
@@ -636,13 +636,13 @@ def admin_settings(request):
                 gst_config.seller_state = data.get('seller_state', '').strip() or 'Tamil Nadu'
                 gst_config.default_rate = default_rate
                 gst_config.pricing_mode = pricing_mode
-                gst_config.seller_name = data.get('seller_name', '').strip() or 'Carmelian'
+                gst_config.seller_name = data.get('seller_name', '').strip() or 'Kj Apperals'
                 gst_config.seller_gstin = data.get('seller_gstin', '').strip()
                 gst_config.seller_address = data.get('seller_address', '').strip()
                 gst_config.save()
                 return JsonResponse({'success': True, 'message': 'GST configuration updated.'})
             
-            company_name = data.get('company_name', '').strip() or 'Carmelian'
+            company_name = data.get('company_name', '').strip() or 'Kj Apperals'
             sender_email = data.get('sender_email', '').strip()
             smtp_host_user = data.get('smtp_host_user', '').strip()
             smtp_host_password = data.get('smtp_host_password', '').strip()
@@ -693,7 +693,7 @@ def admin_settings(request):
             if request.POST.get('form_type') == 'store_address_settings':
                 return save_store_address_settings(request.POST, request.FILES)
 
-            company_name = request.POST.get('company_name', '').strip() or 'Carmelian'
+            company_name = request.POST.get('company_name', '').strip() or 'Kj Apperals'
             sender_email = request.POST.get('sender_email', '').strip()
             smtp_host_user = request.POST.get('smtp_host_user', '').strip()
             smtp_host_password = request.POST.get('smtp_host_password', '').strip()

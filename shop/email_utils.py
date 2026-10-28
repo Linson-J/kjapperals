@@ -111,7 +111,7 @@ def send_order_status_email(order, event_type):
 
     config = EVENT_CONFIG[event_type]
     otp_config = OTPSettings.current()
-    company = otp_config.company_name or 'Carmelian'
+    company = otp_config.company_name or 'Kj Apperals'
     brand_logo_url = _brand_logo_url()
 
     smtp_user = (otp_config.smtp_host_user or getattr(settings, 'EMAIL_HOST_USER', '')).strip()

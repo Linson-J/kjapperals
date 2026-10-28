@@ -209,7 +209,7 @@ class GSTConfig(models.Model):
         choices=PricingMode.choices,
         default=PricingMode.EXCLUSIVE,
     )
-    seller_name = models.CharField(max_length=150, default='Carmelian')
+    seller_name = models.CharField(max_length=150, default='Kj Apperals')
     seller_gstin = models.CharField(max_length=20, blank=True, default='')
     seller_address = models.TextField(blank=True, default='')
     updated_at = models.DateTimeField(auto_now=True)
@@ -238,7 +238,7 @@ class GSTConfig(models.Model):
 
 # ─── Product Images (gallery) ─────────────────────────────────
 class StoreAddressSettings(models.Model):
-    sender_name = models.CharField(max_length=150, default='Carmelian')
+    sender_name = models.CharField(max_length=150, default='Kj Apperals')
     brand_logo = models.ImageField(upload_to='store/logos/', blank=True, null=True)
     sender_phone = models.CharField(max_length=20, blank=True, default='')
     sender_address = models.TextField(blank=True, default='')
@@ -539,8 +539,8 @@ class OTPSettings(models.Model):
         SIX = 6, '6 Digits'
         EIGHT = 8, '8 Digits'
 
-    company_name = models.CharField(max_length=255, default='Carmelian', help_text='Company / Store name displayed in email template header and sender name')
-    sender_email = models.EmailField(default='noreply@carmelian.com', help_text='Sender email address used for sending OTPs')
+    company_name = models.CharField(max_length=255, default='Kj Apperals', help_text='Company / Store name displayed in email template header and sender name')
+    sender_email = models.EmailField(default='noreply@kjapperals.com', help_text='Sender email address used for sending OTPs')
     smtp_host_user = models.CharField(max_length=255, blank=True, default='', help_text='SMTP Username / Email address (e.g. joellinson00@gmail.com)')
     smtp_host_password = models.CharField(max_length=255, blank=True, default='', help_text='SMTP App Password (16-digit code from Google)')
     otp_length = models.IntegerField(choices=OTPDigits.choices, default=6, help_text='OTP length (4, 6, or 8 digits)')

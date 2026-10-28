@@ -1,14 +1,14 @@
 {% if active_popup_banner and active_popup_banner.image %}
-<div id="carmelianPopupOverlay" class="popup-modal-overlay" style="display: none;">
+<div id="kjapperalsPopupOverlay" class="popup-modal-overlay" style="display: none;">
   <div class="popup-modal-container" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
     <!-- Close Button -->
-    <button type="button" class="popup-modal-close" onclick="closeCarmelianPopup()" aria-label="Close popup">
+    <button type="button" class="popup-modal-close" onclick="closeKjapperalsPopup()" aria-label="Close popup">
       <i class="ri-close-line"></i>
     </button>
 
     <!-- Banner Image Container -->
     <div class="popup-modal-image-wrap">
-      <a href="{{ active_popup_banner.link_url|default:'/shop/' }}" onclick="closeCarmelianPopup()">
+      <a href="{{ active_popup_banner.link_url|default:'/shop/' }}" onclick="closeKjapperalsPopup()">
         <img src="{{ active_popup_banner.image.url }}" alt="{{ active_popup_banner.title|default:'Special Offer' }}" class="popup-modal-img">
       </a>
     </div>
@@ -26,7 +26,7 @@
 
         {% if active_popup_banner.button_text %}
           <div class="popup-modal-actions">
-            <a href="{{ active_popup_banner.link_url|default:'/shop/' }}" class="popup-modal-btn" onclick="closeCarmelianPopup()">
+            <a href="{{ active_popup_banner.link_url|default:'/shop/' }}" class="popup-modal-btn" onclick="closeKjapperalsPopup()">
               {{ active_popup_banner.button_text }} <i class="ri-arrow-right-line"></i>
             </a>
           </div>
@@ -218,7 +218,7 @@
     const popupId = "{{ active_popup_banner.id }}";
     const frequency = "{{ active_popup_banner.frequency }}";
     const delaySeconds = parseInt("{{ active_popup_banner.display_delay }}", 10) || 1;
-    const storageKey = 'carmelian_popup_seen_' + popupId;
+    const storageKey = 'kjapperals_popup_seen_' + popupId;
 
     function shouldShowPopup() {
       if (frequency === 'once_per_session') {
@@ -243,8 +243,8 @@
       }
     }
 
-    window.closeCarmelianPopup = function() {
-      const overlay = document.getElementById('carmelianPopupOverlay');
+    window.closeKjapperalsPopup = function() {
+      const overlay = document.getElementById('kjapperalsPopupOverlay');
       if (overlay) {
         overlay.classList.remove('active');
         recordPopupSeen();
@@ -258,7 +258,7 @@
       if (!shouldShowPopup()) return;
 
       setTimeout(function() {
-        const overlay = document.getElementById('carmelianPopupOverlay');
+        const overlay = document.getElementById('kjapperalsPopupOverlay');
         if (overlay) {
           overlay.style.display = 'flex';
           // Trigger reflow for smooth CSS transition
@@ -271,18 +271,18 @@
 
     // Close on background click
     document.addEventListener('click', function(e) {
-      const overlay = document.getElementById('carmelianPopupOverlay');
+      const overlay = document.getElementById('kjapperalsPopupOverlay');
       if (overlay && e.target === overlay) {
-        closeCarmelianPopup();
+        closeKjapperalsPopup();
       }
     });
 
     // Close on ESC key press
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
-        const overlay = document.getElementById('carmelianPopupOverlay');
+        const overlay = document.getElementById('kjapperalsPopupOverlay');
         if (overlay && overlay.classList.contains('active')) {
-          closeCarmelianPopup();
+          closeKjapperalsPopup();
         }
       }
     });

@@ -351,7 +351,7 @@ def request_otp(request):
     from django.core.mail import get_connection, EmailMultiAlternatives
     from django.template.loader import render_to_string
 
-    company = otp_config.company_name or 'Carmelian'
+    company = otp_config.company_name or 'Kj Apperals'
     store_settings = StoreAddressSettings.current()
     brand_logo_url = ''
     if store_settings.brand_logo:
@@ -1603,7 +1603,7 @@ def _invoice_pdf_response(order):
     company_name = (
         (getattr(gst_config, 'seller_name', '') or '').strip()
         or (getattr(store_settings, 'sender_name', '') or '').strip()
-        or 'Carmelian'
+        or 'Kj Apperals'
     )
     company_phone = (getattr(store_settings, 'sender_phone', '') or '').strip()
     company_address = ' '.join(
